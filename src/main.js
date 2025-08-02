@@ -1,19 +1,20 @@
-// import './assets/main.css'
-// import '@/assets/style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
 
 import PrimeVue from 'primevue/config'
 import Aura from '@primevue/themes/aura'
-// import DataTable from 'primevue/datatable'
-// import Column from 'primevue/Column'
 
-const app = createApp(App)
-app.use(PrimeVue, { theme: { preset: Aura } })
+// 导入 Firebase 初始化文件（执行 Firebase 初始化，无需显式使用导出的变量）
+import './firebase/init.js'
 
-// app.component('DataTable', DataTable)
-// app.component('Column', Column)
+// 初始化 Vue 应用
+const vueApp = createApp(App)
 
-app.mount('#app')
+// 配置 PrimeVue 主题
+vueApp.use(PrimeVue, { theme: { preset: Aura } })
+vueApp.use(router)
+
+vueApp.mount('#app')
