@@ -1,0 +1,50 @@
+# Workflow name (displayed on the GitHub Actions page)
+name: Deploy to GitHub Pages
+
+# Trigger condition: Automatically run the workflow when code is pushed to the main branch
+on:
+  push:
+    branches:
+      - main  # Only listen for push events on the main branch
+
+# Define the tasks to be executed (jobs)
+jobs:
+  # Task name: Build and deploy (customizable)
+  build-and-deploy:
+    # Runtime environment: Use the latest Ubuntu server provided by GitHub
+    runs-on: ubuntu-latest
+
+    # Task steps (executed in order)
+    steps:
+      # Step 1: Pull the repository code into the workflow's runtime environment
+      - name: Checkout
+        uses: actions/checkout@v4  # Use the official checkout tool (v4 is the version number)
+        # Purpose: Download your GitHub repository code to a temporary directory on the Ubuntu server for use in subsequent steps
+
+      # Step 2: Install Node.js environment (Vue projects depend on Node.js to run)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4  # Official Node.js installation tool
+        with:
+          node-version: '20'  # Specify the Node.js version (must be compatible with the local development environment; v18+ is recommended)
+
+      # Step 3: Install project dependencies (e.g., Vue framework, plugins, etc.)
+      - name: Install dependencies
+        run: npm ci  # Execute command: npm ci (stricter than npm install; forces installation according to package-lock.json to avoid version conflicts)
+        # Note: If the project uses yarn, change to `yarn install --frozen-lockfile`
+
+      # Step 4: Build production environment code (generate deployable static files)
+      - name: Build
+        run: npm run build  # Execute the Vue project's build command (defined in the scripts section of package.json)
+        # After successful build, a dist folder will be generated in the project root directory, containing all static resources (HTML/CSS/JS)
+
+      # Step 5: Deploy the dist folder to the gh-pages branch
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.4  # Third-party deployment tool (mature and stable)
+        with:
+          branch: gh-pages  # Deployment target branch (dedicated branch for GitHub Pages; no need to create manually)
+          folder: dist      # Folder to deploy (output directory after Vue build)
+
+# Permission settings: Allow the workflow to write content to the repository (otherwise, deployment files cannot be pushed to the gh-pages branch)
+permissions:
+  contents: write
+    
