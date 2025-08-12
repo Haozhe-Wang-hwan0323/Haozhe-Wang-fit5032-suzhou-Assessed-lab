@@ -5,7 +5,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Only listen for push events on the main branch
+      - week-4-end  # Only listen for push events on the main branch
 
 # Define the tasks to be executed (jobs)
 jobs:
