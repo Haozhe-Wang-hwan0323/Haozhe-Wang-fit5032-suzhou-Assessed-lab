@@ -16,3 +16,11 @@ export default defineConfig({
     }
   }
 })
+
+module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/Haozhe-Wang-fit5032-suzhou-Assessed-lab/'  // 生产环境路径（GitHub仓库名）
+    : '/'  // 开发环境路径（本地运行时）
+}
+
+

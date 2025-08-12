@@ -162,3 +162,116 @@ export default {
 };
 </script>
 
+<style scoped>
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #333;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.search-input {
+  padding: 8px 12px;
+  width: 280px;
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-button:hover {
+  background-color: #2980b9;
+}
+
+.main-content {
+  text-align: center;
+}
+
+.status-message {
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+.status-message.error {
+  background-color: #ffebee;
+  color: #e74c3c;
+}
+
+.weather-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.weather-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.weather-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.temperature {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.description {
+  font-size: 20px;
+  color: #555;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.details-grid p {
+  background-color: #e9ecef;
+  padding: 8px;
+  border-radius: 4px;
+  margin: 0;
+}
+</style>
